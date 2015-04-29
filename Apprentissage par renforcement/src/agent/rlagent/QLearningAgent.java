@@ -3,10 +3,7 @@ package agent.rlagent;
 import environnement.Action;
 import environnement.Environnement;
 import environnement.Etat;
-import environnement.gridworld.ActionGridworld;
-import environnement.gridworld.EtatGrille;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,13 +23,12 @@ public class QLearningAgent extends RLAgent
      */
     public QLearningAgent(double alpha, double gamma, Environnement _env)
     {
-        super(alpha, gamma,_env);
-        
+        super(alpha, gamma, _env);
         
         q = new HashMap<>();
     }
     
-    protected Map<Pair<Etat, Action>, Double> q;
+    protected final Map<Pair<Etat, Action>, Double> q;
 
 
 
@@ -45,9 +41,6 @@ public class QLearningAgent extends RLAgent
     @Override
     public List<Action> getPolitique(Etat e)
     {
-        if(e.estTerminal())
-            return getActions(e);
-        
         List<Action> actions = new ArrayList<>();
         double max = Double.MIN_VALUE;
         

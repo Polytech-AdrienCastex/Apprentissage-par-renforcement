@@ -6,9 +6,7 @@ import java.util.Random;
 import agent.rlagent.RLAgent;
 import environnement.Action;
 import environnement.Etat;
-import environnement.crawler.ActionCrawler;
-import environnement.gridworld.ActionGridworld;
-import java.util.Arrays;
+
 /**
  * Strategie qui renvoit une action aleatoire avec probabilite epsilon, une action gloutonne (qui suit la politique de l'agent) sinon
  * Cette classe a acces a un RLAgent par l'intermediaire de sa classe mere.
@@ -17,7 +15,7 @@ import java.util.Arrays;
  */
 public class StrategyGreedy extends StrategyExploration
 {
-    private Random rand = new Random();
+    private final Random rand = new Random();
     protected Double epsilon;
 
     public StrategyGreedy(RLAgent agent, double epsilon)

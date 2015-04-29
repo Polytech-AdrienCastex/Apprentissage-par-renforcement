@@ -3,11 +3,7 @@ package agent.strategy;
 import agent.rlagent.RLAgent;
 import environnement.Action;
 import environnement.Etat;
-import environnement.gridworld.ActionGridworld;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -17,7 +13,7 @@ import java.util.Random;
  */
 public class StrategySoftmax extends StrategyExploration
 {
-    private Random rand = new Random();
+    private final Random rand = new Random();
     
     protected Double tau;
 
