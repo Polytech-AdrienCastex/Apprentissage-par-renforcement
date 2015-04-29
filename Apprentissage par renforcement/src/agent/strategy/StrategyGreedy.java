@@ -51,7 +51,7 @@ public class StrategyGreedy extends StrategyExploration
     {
         List<Action> actions = getAgent().getEnv().getActionsPossibles(_e);
         if(actions.isEmpty())
-            return actions.stream().filter(a -> a.toString().toLowerCase().contains("exit")).findFirst().get();
+            return null;
         else
             return actions.get(rand.nextInt(actions.size()));
     }

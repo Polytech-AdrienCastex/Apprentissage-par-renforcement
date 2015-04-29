@@ -28,26 +28,33 @@ public class StrategySoftmax extends StrategyExploration
         this.tau = tau;
     }
     
-    protected List<Action> getActions(Etat e)
-    {
-        return getAgent().getEnv().getActionsPossibles(e);
-    }
-
+    
+    /**
+     * @return action selectionnee par la strategie d'exploration
+     */
     @Override
     public Action getAction(Etat _e)
     {
-        Map<Action, Double> valeurs = new HashMap<>();
-        /*
-        getActions().stream()
-                .forEach(a ->
-                {
-                    Double value = (Math.exp(getAgent().getQValeur(_e, a)/tau)) / ();
-                    valeurs.put(a, value);
-                });
+        double index = rand.nextDouble();
         
-        getAgent().getQValeur(_e, null)*/
+        double sum = getActions(_e)
+                .stream()
+                .mapToDouble(b -> Math.exp(getAgent().getQValeur(_e, b)/tau))
+                .sum();
+        
+        for(Action a : getActions(_e))
+        {
+            index -= Math.exp(getAgent().getQValeur(_e, a)/tau) / sum;
+            if(index <= 0)
+                return a;
+        }
         
         return null;
+    }
+    
+    protected List<Action> getActions(Etat _e)
+    {
+        return getAgent().getEnv().getActionsPossibles(_e);
     }
 
     public void setTau(double tau)
